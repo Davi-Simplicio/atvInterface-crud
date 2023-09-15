@@ -34,5 +34,8 @@ public class BancoDeRoupa implements ICrud<Integer,Roupa>{
     @Override
     public void delete(Integer integer) {
         roupas.remove(roupas.get(integer));
+        for (Roupa roupa:roupas) {
+            roupa.setId(roupa.getId()-1);
+        }
     }
 }

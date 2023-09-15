@@ -26,4 +26,12 @@ public class Colar extends Acessorio{
                 [4]Comprimento
                 [5]Fecho""";
     }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "comprimento=" + comprimento +
+                ", temFecho=" + temFecho +
+                "} ";
+    }
 }

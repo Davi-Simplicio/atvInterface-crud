@@ -22,4 +22,12 @@ public class Camiseta extends Roupa{
                 [4]Comprimento da Manga
                 [5]estampa""";
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "comprimentoDaManga=" + comprimentoDaManga +
+                ", estampa='" + estampa + '\'' +
+                "} " ;
+    }
 }

@@ -11,6 +11,10 @@ public class Acessorio {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setMaterial(String material) {
         this.material = material;
     }

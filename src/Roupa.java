@@ -11,6 +11,10 @@ public class Roupa {
         this.id = id;
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setMarca(String marca) {
         this.marca = marca;
     }

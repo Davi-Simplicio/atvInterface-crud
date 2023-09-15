@@ -26,4 +26,12 @@ public class Calca extends Roupa{
                 [4]tipo
                 [5]Forro""";
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "tipo='" + tipo + '\'' +
+                ", temForro=" + temForro +
+                "} ";
+    }
 }

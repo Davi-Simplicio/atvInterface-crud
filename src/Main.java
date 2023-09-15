@@ -46,7 +46,7 @@ public class Main {
     }
 
     private static void menu() {
-        int opcao;
+        int opcao=0;
         do {
 
 
@@ -96,14 +96,14 @@ public class Main {
 
     private static void deletarAcessorio() {
         System.out.println("Escolha o id da peça que deseja deletar");
-        System.out.println(" Acessorios \n" +bancoDeAcessorio.acessorios);
+        System.out.println(" Acessorios \n" +bancoDeAcessorio.readAll());
         int id = sc.nextInt();
         bancoDeAcessorio.delete(id);
     }
 
     private static void deletarRoupa() {
         System.out.println("Escolha o id da peça que deseja deletar");
-        System.out.println(" Roupas \n" +bancoDeRoupa.roupas);
+        System.out.println(" Roupas \n" +bancoDeRoupa.readAll());
         int id = sc.nextInt();
         bancoDeAcessorio.delete(id);
     }
@@ -122,25 +122,25 @@ public class Main {
                 break;
 
         }
-        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + bancoDeRoupa.roupas.size() + 1 + "]Sair");
+        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + bancoDeRoupa.readAll().size() + 1 + "]Sair");
     }
 
     private static void verTodosAcessorios() {
         System.out.println(bancoDeAcessorio.readAll());
-        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + bancoDeAcessorio.acessorios.size() + 1 + "]Sair");
+        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + (bancoDeAcessorio.readAll().size() + 1) + "]Sair");
         int id = sc.nextInt();
-        if (id == bancoDeAcessorio.acessorios.size() + 1) {
+        if (id == bancoDeAcessorio.readAll().size() + 1) {
             System.out.println("---------------------");
         } else {
-            bancoDeAcessorio.readOne(id);
+            System.out.println(bancoDeAcessorio.readOne(id));
         }
     }
 
     private static void verTodasRoupas() {
         System.out.println(bancoDeRoupa.readAll());
-        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + bancoDeRoupa.roupas.size() + 1 + "]Sair");
+        System.out.println("Digite o id de qual você deseja ver especificamente\n[" + (bancoDeRoupa.readAll().size() + 1) + "]Sair");
         int id = sc.nextInt();
-        if (id == bancoDeRoupa.roupas.size() + 1) {
+        if (id == bancoDeRoupa.readAll().size() + 1) {
             System.out.println("---------------------");
         } else {
             bancoDeRoupa.readOne(id);
@@ -167,7 +167,7 @@ public class Main {
         System.out.println(bancoDeAcessorio.readAll());
         System.out.println("Escolha o id que deseja editar");
         int id = sc.nextInt();
-        Acessorio acessorio = bancoDeAcessorio.acessorios.get(id-1);
+        Acessorio acessorio = bancoDeAcessorio.readAll().get(id);
         acessorio.menuEditar();
         int opcao=sc.nextInt();
         switch (opcao){
@@ -226,7 +226,7 @@ public class Main {
         System.out.println(bancoDeRoupa.readAll());
         System.out.println("Escolha o id que deseja editar");
         int id = sc.nextInt();
-        Roupa roupa = bancoDeRoupa.roupas.get(id - 1);
+        Roupa roupa = bancoDeRoupa.readAll().get(id - 1);
         roupa.menuEditar();
         int opcao = sc.nextInt();
         switch (opcao) {
@@ -287,7 +287,7 @@ public class Main {
 
     private static void cadastrarPeca() {
         int opcao;
-        System.out.println("Oque você deseja cadastrar?" + """
+        System.out.println("Oque você deseja cadastrar?\n" + """
                 [1]Acessorio
                 [2]Roupa
                 [3]Sair""");
@@ -323,7 +323,7 @@ public class Main {
             case 1:
                 System.out.println("Qual o tipo da calca?");
                 String tipoCalca = sc.next();
-                System.out.println("A calça possui forro?");
+                System.out.println("A calça possui forro?\n[1]Sim\n[2]Não");
                 int opcao2 = sc.nextInt();
                 switch (opcao2) {
                     case 1:
@@ -333,7 +333,7 @@ public class Main {
                         forro = false;
                         break;
                 }
-                Calca calca = new Calca(marca, preco, tamanho, bancoDeRoupa.roupas.size(), tipoCalca, forro);
+                Calca calca = new Calca(marca, preco, tamanho, bancoDeRoupa.readAll().size(), tipoCalca, forro);
                 bancoDeRoupa.create(calca);
                 break;
             case 2:
@@ -341,11 +341,11 @@ public class Main {
                 double comprimentoDaManga = sc.nextDouble();
                 System.out.println("Qual a estampa da camiseta?");
                 String estampa = sc.next();
-                Camiseta camiseta = new Camiseta(marca, preco, tamanho, bancoDeRoupa.roupas.size(), comprimentoDaManga, estampa);
+                Camiseta camiseta = new Camiseta(marca, preco, tamanho, bancoDeRoupa.readAll().size(), comprimentoDaManga, estampa);
                 bancoDeRoupa.create(camiseta);
                 break;
             case 3:
-                System.out.println("O casaco possui bolso?");
+                System.out.println("O casaco possui bolso?\n[1]Sim\n[2]Não");
                 int opcao3 = sc.nextInt();
                 switch (opcao3) {
                     case 1:
@@ -355,7 +355,7 @@ public class Main {
                         bolso = false;
                         break;
                 }
-                System.out.println("O casaco possui capuz?");
+                System.out.println("O casaco possui capuz?\n[1]Sim\n[2]Não");
                 int opcao4 = sc.nextInt();
                 switch (opcao4) {
                     case 1:
@@ -365,7 +365,7 @@ public class Main {
                         capuz = false;
                         break;
                 }
-                Casaco casaco = new Casaco(marca, preco, tamanho, bancoDeRoupa.roupas.size() + 1, bolso, capuz);
+                Casaco casaco = new Casaco(marca, preco, tamanho, bancoDeRoupa.readAll().size(), bolso, capuz);
                 bancoDeRoupa.create(casaco);
         }
     }
@@ -387,7 +387,7 @@ public class Main {
             case 1:
                 System.out.println("Qual o comprimento do colar?");
                 double comprimento = sc.nextDouble();
-                System.out.println("O colar tem Fecho?");
+                System.out.println("O colar tem Fecho?\n[1]Sim\n[2]Não");
                 int opcao2 = sc.nextInt();
                 switch (opcao2) {
                     case 1:
@@ -397,7 +397,7 @@ public class Main {
                         fecho = false;
                         break;
                 }
-                Colar colar = new Colar(material, utilidade, nome, bancoDeAcessorio.acessorios.size() + 1, comprimento, fecho);
+                Colar colar = new Colar(material, utilidade, nome, bancoDeAcessorio.readAll().size(), comprimento, fecho);
                 bancoDeAcessorio.create(colar);
                 break;
             case 2:
@@ -405,7 +405,7 @@ public class Main {
                 String tipoOculos = sc.next();
                 System.out.println("Qual o formato da lente do oculos?");
                 String formatoDaLente = sc.next();
-                Oculos oculos = new Oculos(material, utilidade, nome, bancoDeAcessorio.acessorios.size() + 1, tipoOculos, formatoDaLente);
+                Oculos oculos = new Oculos(material, utilidade, nome, bancoDeAcessorio.readAll().size(), tipoOculos, formatoDaLente);
                 bancoDeAcessorio.create(oculos);
                 break;
             case 3:
@@ -413,7 +413,7 @@ public class Main {
                 String tipoRelogio = sc.next();
                 System.out.println("Qual a cor do relogio?");
                 String cor = sc.next();
-                Relogio relogio = new Relogio(material, utilidade, nome, bancoDeAcessorio.acessorios.size() + 1, tipoRelogio, cor);
+                Relogio relogio = new Relogio(material, utilidade, nome, bancoDeAcessorio.readAll().size(), tipoRelogio, cor);
                 bancoDeAcessorio.create(relogio);
         }
     }

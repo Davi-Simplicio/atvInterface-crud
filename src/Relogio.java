@@ -22,4 +22,12 @@ public class Relogio extends Acessorio{
                 [4]Tipo
                 [5]Cor""";
     }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "tipo='" + tipo + '\'' +
+                ", cor='" + cor + '\'' +
+                "} " ;
+    }
 }

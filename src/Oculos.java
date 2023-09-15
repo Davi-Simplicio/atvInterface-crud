@@ -22,4 +22,12 @@ public class Oculos extends Acessorio{
                 [4]Tipo
                 [5]Formato Da Lente""";
     }
+
+    @Override
+    public String toString() {
+        return  super.toString() +
+                "tipo='" + tipo + '\'' +
+                ", formaDaLente='" + formaDaLente + '\'' +
+                "} ";
+    }
 }

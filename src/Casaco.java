@@ -30,4 +30,12 @@ public class Casaco extends Roupa{
                 [4]Bolso
                 [5]Capuz""";
     }
+
+    @Override
+    public String toString() {
+        return super.toString() +
+                "temBolso=" + temBolso +
+                ", temCapuz=" + temCapuz +
+                "} ";
+    }
 }
